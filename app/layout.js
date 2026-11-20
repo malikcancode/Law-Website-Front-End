@@ -1,5 +1,8 @@
+import Script from 'next/script';
 import { Libre_Baskerville, Source_Sans_3 } from 'next/font/google';
 import './globals.css';
+
+const GTM_ID = 'GTM-M8V227DG';
 
 const display = Libre_Baskerville({
   subsets: ['latin'],
@@ -36,7 +39,30 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="ltr" className={`${display.variable} ${body.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Script id="gtm-datalayer" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          `}
+        </Script>
+        <Script
+          id="gtm-script"
+          src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
+          strategy="afterInteractive"
+        />
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+            title="Google Tag Manager"
+          />
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }
