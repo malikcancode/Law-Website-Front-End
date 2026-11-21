@@ -1,19 +1,19 @@
 const steps = [
   {
-    title: 'Confidential consultation',
-    body: 'You contact us and explain what happened. Everything you share stays between us.',
+    title: 'استشارة سرية',
+    body: 'تتواصل معنا وتشرح ما حدث. كل ما تشاركه يبقى بيننا.',
   },
   {
-    title: 'Document review',
-    body: 'We examine contracts, transfers, and correspondence and give you a clear view of your legal position.',
+    title: 'مراجعة المستندات',
+    body: 'ندرس العقود والتحويلات والمراسلات، ونعطيك صورة واضحة عن موقفك القانوني.',
   },
   {
-    title: 'Legal action',
-    body: 'We prepare complaints, claims, and requests for precautionary attachment before the competent authorities.',
+    title: 'الإجراء القانوني',
+    body: 'نُعد الشكاوى والمطالبات وطلبات الحجز التحفظي أمام الجهات المختصة.',
   },
   {
-    title: 'Follow-through to recovery',
-    body: 'We pursue the case and enforcement of the judgment, and keep you updated at every stage.',
+    title: 'المتابعة حتى الاسترداد',
+    body: 'نتابع القضية وتنفيذ الحكم، ونبقيك على اطلاع في كل مرحلة.',
   },
 ];
 
@@ -22,10 +22,10 @@ export default function Process() {
     <section className="process" id="process" aria-labelledby="process-title">
       <div className="container">
         <h2 id="process-title" className="section-title section-title--center">
-          How we handle your case
+          كيف نتعامل مع قضيتك
         </h2>
         <p className="section-lead section-lead--center">
-          A clear path from the first call to recovering your funds — with steps you know in advance.
+          مسار واضح من أول اتصال حتى استرداد أموالك — بخطوات تعرفها مسبقًا.
         </p>
 
         <ol className="steps">

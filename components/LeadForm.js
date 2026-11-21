@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Lock, Loader2, CheckCircle2 } from 'lucide-react';
-import { amountRanges, cities } from '@/lib/defaults';
+import { amountRanges, cities, localizeCaseType } from '@/lib/defaults';
 import { useSite } from './SiteProvider';
 
 const initial = {
@@ -26,18 +26,18 @@ const toLatin = (v) =>
 
 const validate = (v, caseTypes) => {
   const e = {};
-  if (v.fullName.trim().length < 3) e.fullName = 'Please enter your full name';
+  if (v.fullName.trim().length < 3) e.fullName = 'يرجى إدخال الاسم الكامل';
   const phone = toLatin(v.phone).replace(/[\s\-()]/g, '');
   if (!/^(?:\+?966|00966|0)?5\d{8}$/.test(phone)) {
-    e.phone = 'Enter a valid Saudi mobile number, e.g. 05xxxxxxxx';
+    e.phone = 'أدخل رقم جوال سعودي صحيح، مثل 05xxxxxxxx';
   }
   if (v.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) {
-    e.email = 'Email format looks incorrect';
+    e.email = 'صيغة البريد الإلكتروني غير صحيحة';
   }
   if (!v.caseType || !caseTypes.some((c) => c.value === v.caseType)) {
-    e.caseType = 'Please select a case type';
+    e.caseType = 'يرجى اختيار نوع القضية';
   }
-  if (!v.consent) e.consent = 'Please confirm we may contact you about this request';
+  if (!v.consent) e.consent = 'يرجى الموافقة على التواصل بشأن هذا الطلب';
   return e;
 };
 
@@ -55,7 +55,7 @@ const readSource = () => {
 
 export default function LeadForm() {
   const site = useSite();
-  const caseTypes = site.caseTypes || [];
+  const caseTypes = (site.caseTypes || []).map(localizeCaseType);
   const [values, setValues] = useState(initial);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle');
@@ -87,18 +87,18 @@ export default function LeadForm() {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         if (data.errors) setErrors(data.errors);
-        setServerMessage(data.message || 'Could not send your request. Please try again.');
+        setServerMessage(data.message || 'تعذّر إرسال طلبك. يرجى المحاولة مرة أخرى.');
         setStatus('error');
         return;
       }
       setStatus('success');
       setServerMessage(
         data.message ||
-          'Your request was received. One of our advisors will contact you shortly to schedule a consultation.'
+          'تم استلام طلبك. سيتواصل معك أحد مستشارينا قريبًا لجدولة الاستشارة.'
       );
       setValues(initial);
     } catch {
-      setServerMessage('Could not reach the server. Check your connection or call us directly.');
+      setServerMessage('تعذّر الوصول إلى الخادم. تحقق من اتصالك أو اتصل بنا مباشرة.');
       setStatus('error');
     }
   };
@@ -107,13 +107,13 @@ export default function LeadForm() {
     return (
       <div className="lead-form lead-form--done" role="status">
         <CheckCircle2 size={56} strokeWidth={1.5} aria-hidden="true" />
-        <h3>Request received</h3>
+        <h3>تم استلام الطلب</h3>
         <p>{serverMessage}</p>
         <p className="lead-form__note">
-          For urgent matters, call us on <a href={site.telHref} dir="ltr">{site.phone}</a>
+          للأمور العاجلة، اتصل بنا على <a href={site.telHref} dir="ltr">{site.phone}</a>
         </p>
         <button type="button" className="btn btn--ghost-dark" onClick={() => setStatus('idle')}>
-          Submit another request
+          إرسال طلب آخر
         </button>
       </div>
     );
@@ -138,22 +138,22 @@ export default function LeadForm() {
   return (
     <form className="lead-form" onSubmit={onSubmit} noValidate>
       <div className="lead-form__head">
-        <h3>Book your legal consultation</h3>
+        <h3>احجز استشارتك القانونية</h3>
         <p>
-          <Lock size={15} strokeWidth={2} aria-hidden="true" /> Your details are confidential and
-          reviewed only by the assigned lawyer
+          <Lock size={15} strokeWidth={2} aria-hidden="true" /> بياناتك سرية ويطّلع عليها المحامي
+          المختص فقط
         </p>
       </div>
 
       <div className="lead-form__grid">
         <div className="field">
-          <label htmlFor="lf-fullName">Full name *</label>
-          <input type="text" autoComplete="name" placeholder="e.g. Abdullah Mohammed" {...fieldProps('fullName')} />
+          <label htmlFor="lf-fullName">الاسم الكامل *</label>
+          <input type="text" autoComplete="name" placeholder="مثال: عبدالله محمد" {...fieldProps('fullName')} />
           <Err name="fullName" />
         </div>
 
         <div className="field">
-          <label htmlFor="lf-phone">Mobile number *</label>
+          <label htmlFor="lf-phone">رقم الجوال *</label>
           <input
             type="tel"
             inputMode="tel"
@@ -166,14 +166,14 @@ export default function LeadForm() {
         </div>
 
         <div className="field">
-          <label htmlFor="lf-companyName">Company / establishment</label>
+          <label htmlFor="lf-companyName">الشركة / المنشأة</label>
           <input type="text" autoComplete="organization" {...fieldProps('companyName')} />
         </div>
 
         <div className="field">
-          <label htmlFor="lf-city">City</label>
+          <label htmlFor="lf-city">المدينة</label>
           <select {...fieldProps('city')}>
-            <option value="">Select a city</option>
+            <option value="">اختر المدينة</option>
             {cities.map((c) => (
               <option key={c} value={c}>
                 {c}
@@ -183,9 +183,9 @@ export default function LeadForm() {
         </div>
 
         <div className="field field--full">
-          <label htmlFor="lf-caseType">Case type *</label>
+          <label htmlFor="lf-caseType">نوع القضية *</label>
           <select {...fieldProps('caseType')}>
-            <option value="">Select a case type</option>
+            <option value="">اختر نوع القضية</option>
             {caseTypes.map((c) => (
               <option key={c.value} value={c.value}>
                 {c.label}
@@ -196,7 +196,7 @@ export default function LeadForm() {
         </div>
 
         <div className="field">
-          <label htmlFor="lf-amountRange">Approximate amount in dispute</label>
+          <label htmlFor="lf-amountRange">المبلغ التقريبي محل النزاع</label>
           <select {...fieldProps('amountRange')}>
             {amountRanges.map((a) => (
               <option key={a.value} value={a.value}>
@@ -207,18 +207,18 @@ export default function LeadForm() {
         </div>
 
         <div className="field">
-          <label htmlFor="lf-email">Email (optional)</label>
+          <label htmlFor="lf-email">البريد الإلكتروني (اختياري)</label>
           <input type="email" autoComplete="email" dir="ltr" {...fieldProps('email')} />
           <Err name="email" />
         </div>
 
         <fieldset className="field field--full choice">
-          <legend>Preferred contact method</legend>
+          <legend>طريقة التواصل المفضلة</legend>
           <div className="choice__options">
             {[
-              ['call', 'Phone call'],
-              ['whatsapp', 'WhatsApp'],
-              ['email', 'Email'],
+              ['call', 'اتصال هاتفي'],
+              ['whatsapp', 'واتساب'],
+              ['email', 'بريد إلكتروني'],
             ].map(([val, label]) => (
               <label key={val} className="choice__option">
                 <input
@@ -235,10 +235,10 @@ export default function LeadForm() {
         </fieldset>
 
         <div className="field field--full">
-          <label htmlFor="lf-message">Brief summary of your case</label>
+          <label htmlFor="lf-message">ملخص موجز عن قضيتك</label>
           <textarea
             rows={4}
-            placeholder="When did it happen? Who is the other party? Do you have documents or bank transfers?"
+            placeholder="متى حدث الأمر؟ من الطرف الآخر؟ هل لديك مستندات أو تحويلات بنكية؟"
             {...fieldProps('message')}
           />
         </div>
@@ -266,8 +266,7 @@ export default function LeadForm() {
               aria-describedby={errors.consent ? 'lf-consent-err' : undefined}
             />
             <span>
-              I agree to be contacted about this request and understand my information will be handled
-              confidentially.
+              أوافق على التواصل معي بشأن هذا الطلب، وأفهم أن معلوماتي ستُعامل بسرية.
             </span>
           </label>
           <Err name="consent" />
@@ -283,10 +282,10 @@ export default function LeadForm() {
       <button type="submit" className="btn btn--gold btn--lg btn--block" disabled={status === 'submitting'}>
         {status === 'submitting' ? (
           <>
-            <Loader2 className="spin" size={20} aria-hidden="true" /> Sending…
+            <Loader2 className="spin" size={20} aria-hidden="true" /> جارٍ الإرسال…
           </>
         ) : (
-          'Send consultation request'
+          'إرسال طلب الاستشارة'
         )}
       </button>
     </form>

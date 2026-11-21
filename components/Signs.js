@@ -1,12 +1,12 @@
 import { AlertTriangle } from 'lucide-react';
 
 const signs = [
-  'Unexplained transfers from the company’s accounts',
-  'A partner, employee, or manager who used company funds without authority',
-  'You paid for a deal, goods, or investment — then the other party disappeared',
-  'Bounced cheques or promissory notes that were never paid',
-  'Invoices or contracts that later proved fake or forged',
-  'Outstanding amounts owed by a client or partner who keeps delaying payment',
+  'تحويلات غير مبررة من حسابات الشركة',
+  'شريك أو موظف أو مدير استخدم أموال الشركة دون صلاحية',
+  'دفعت مقابل صفقة أو بضاعة أو استثمار ثم اختفى الطرف الآخر',
+  'شيكات مرتجعة أو سندات لأمر لم تُسدَّد',
+  'فواتير أو عقود تبيّن لاحقًا أنها مزوّرة أو وهمية',
+  'مبالغ مستحقة على عميل أو شريك يماطل في السداد',
 ];
 
 export default function Signs() {
@@ -15,11 +15,11 @@ export default function Signs() {
       <div className="container signs__inner">
         <div className="signs__head">
           <h2 id="signs-title" className="section-title section-title--light">
-            Is your business facing any of these situations?
+            هل تواجه منشأتك أيًا من هذه الحالات؟
           </h2>
           <p className="section-lead section-lead--light">
-            Acting early helps preserve evidence and take protective measures before the funds are
-            moved further.
+            التحرّك المبكر يساعد على حفظ الأدلة واتخاذ إجراءات وقائية قبل نقل الأموال إلى أماكن
+            أبعد.
           </p>
         </div>
 
@@ -33,9 +33,9 @@ export default function Signs() {
         </ul>
 
         <p className="signs__cta">
-          <strong>Do not leave your rights without a legal claim.</strong>
+          <strong>لا تترك حقك بلا مطالبة قانونية.</strong>
           <a href="#contact" className="btn btn--gold">
-            Start reviewing your case
+            ابدأ بمراجعة قضيتك
           </a>
         </p>
       </div>

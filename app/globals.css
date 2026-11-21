@@ -313,17 +313,18 @@ html {
 }
 .hero__img {
   object-fit: cover;
-  object-position: 72% center;
+  object-position: 28% center;
   filter: grayscale(0.15) contrast(1.05);
+  transform: scaleX(-1);
   animation: hero-settle 2.6s var(--ease-out) both;
 }
 @keyframes hero-settle {
   from {
-    transform: scale(1.05);
+    transform: scaleX(-1) scale(1.05);
     opacity: 0.85;
   }
   to {
-    transform: scale(1);
+    transform: scaleX(-1) scale(1);
     opacity: 1;
   }
 }
@@ -333,7 +334,7 @@ html {
   z-index: -1;
   background:
     linear-gradient(
-      105deg,
+      255deg,
       rgba(6, 16, 36, 0.96) 0%,
       rgba(6, 16, 36, 0.88) 42%,
       rgba(6, 16, 36, 0.35) 68%,
@@ -762,7 +763,7 @@ html {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230b1a33' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 0.9rem center;
+  background-position: left 0.9rem center;
   padding-inline-end: 2.4rem;
 }
 .field ::placeholder {
@@ -1088,7 +1089,7 @@ html {
     height: 360px;
   }
   .hero__img {
-    object-position: 70% 16%;
+    object-position: 30% 16%;
   }
   .hero__shade {
     background: linear-gradient(

@@ -27,19 +27,19 @@ export default function Footer() {
 
         <ul className="footer__contact">
           <li>
-            Phone: <a href={site.telHref} dir="ltr">{site.phone}</a>
+            الهاتف: <a href={site.telHref} dir="ltr">{site.phone}</a>
           </li>
-          <li>Email: {site.publicEmail}</li>
+          <li>البريد: {site.publicEmail}</li>
           <li>{site.address}</li>
         </ul>
       </div>
       <div className="container footer__legal">
         <p>
-          The information on this page describes our services and is not legal advice. Submitting a
-          request does not create a retainer until an engagement is agreed with the firm.
+          المعلومات في هذه الصفحة توضّح خدماتنا وليست استشارة قانونية. تقديم الطلب لا يُنشئ علاقة
+          توكيل إلا بعد الاتفاق مع المكتب.
         </p>
         <p>
-          © {year} {site.shortName}. All rights reserved.
+          © {year} {site.shortName}. جميع الحقوق محفوظة.
         </p>
       </div>
     </footer>

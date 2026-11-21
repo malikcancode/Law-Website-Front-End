@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useSite } from './SiteProvider';
 
 export default function Hero() {
@@ -19,23 +19,23 @@ export default function Hero() {
           <p className="hero__kicker">{site.shortName}</p>
 
           <h1 id="hero-title" className="hero__title">
-            Are you a company or business owner who has faced fraud or embezzlement?
+            هل أنت صاحب شركة أو منشأة وتعرّضت للاحتيال أو الاختلاس؟
           </h1>
 
           <div className="hero__rule" aria-hidden="true" />
 
           <p className="hero__lead">
-            When significant funds are lost to commercial fraud or breach of trust, we pursue recovery
-            through the proper legal channels — confidentially and with care.
+            عندما تُفقد أموال كبيرة بسبب احتيال تجاري أو خيانة أمانة، نسعى لاستردادها عبر القنوات
+            القانونية الصحيحة — بسرية وعناية.
           </p>
 
           <div className="hero__actions">
             <a href="#contact" className="btn btn--gold btn--lg">
-              Book a confidential consultation
-              <ArrowRight size={18} strokeWidth={2.25} aria-hidden="true" />
+              احجز استشارة سرية
+              <ArrowLeft size={18} strokeWidth={2.25} aria-hidden="true" />
             </a>
             <a href={site.waHref} className="btn btn--ghost btn--lg" target="_blank" rel="noopener noreferrer">
-              WhatsApp
+              واتساب
             </a>
           </div>
         </div>

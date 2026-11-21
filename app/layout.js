@@ -1,33 +1,33 @@
 import Script from 'next/script';
-import { Libre_Baskerville, Source_Sans_3 } from 'next/font/google';
+import { Noto_Naskh_Arabic, Noto_Sans_Arabic } from 'next/font/google';
 import './globals.css';
 
 const GTM_ID = 'GTM-M8V227DG';
 
-const display = Libre_Baskerville({
-  subsets: ['latin'],
-  weight: ['400', '700'],
+const display = Noto_Naskh_Arabic({
+  subsets: ['arabic'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-display',
   display: 'swap',
 });
 
-const body = Source_Sans_3({
-  subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
+const body = Noto_Sans_Arabic({
+  subsets: ['arabic'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-body',
   display: 'swap',
 });
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'Financial Fraud & Embezzlement Lawyer | Confidential Legal Consultation',
+  title: 'محامي الاحتيال المالي والاختلاس | استشارة قانونية سرية',
   description:
-    'Specialized legal services for company and business owners in Saudi Arabia: financial and commercial fraud, embezzlement, recovery of owed funds, and large financial disputes. Book a confidential consultation.',
+    'خدمات قانونية متخصصة لأصحاب الشركات والمنشآت في المملكة العربية السعودية: الاحتيال المالي والتجاري، اختلاس الأموال، استرداد المستحقات، والنزاعات المالية الكبيرة. احجز استشارة سرية.',
   openGraph: {
-    title: 'Has your company been a victim of fraud or embezzlement?',
-    description: 'Book a legal consultation. We review your case with confidentiality and care.',
+    title: 'هل تعرضت شركتك للاحتيال أو الاختلاس؟',
+    description: 'احجز استشارة قانونية. نراجع قضيتك بسرية وعناية.',
     images: ['/images/hero.jpg'],
-    locale: 'en_SA',
+    locale: 'ar_SA',
     type: 'website',
   },
 };
@@ -38,7 +38,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" dir="ltr" className={`${display.variable} ${body.variable}`}>
+    <html lang="ar" dir="rtl" className={`${display.variable} ${body.variable}`}>
       <body>
         <Script id="gtm-datalayer" strategy="beforeInteractive">
           {`

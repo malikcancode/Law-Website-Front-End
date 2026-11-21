@@ -2,22 +2,23 @@
 
 import Image from 'next/image';
 import { CircleCheck } from 'lucide-react';
+import { localizeService } from '@/lib/defaults';
 import { useSite } from './SiteProvider';
 
 export default function Services() {
   const site = useSite();
-  const services = site.services || [];
+  const services = (site.services || []).map(localizeService);
 
   return (
     <section className="services" id="services" aria-labelledby="services-title">
       <div className="container services__grid">
         <div className="services__content">
           <h2 id="services-title" className="section-title">
-            Specialized legal services for cases of:
+            خدمات قانونية متخصصة في قضايا:
           </h2>
           <p className="section-lead">
-            We work with company and business owners across Saudi Arabia on financial matters that
-            affect the funds and reputation of the enterprise.
+            نعمل مع أصحاب الشركات والمنشآت في أنحاء المملكة على المسائل المالية التي تمس أموال
+            المنشأة وسمعتها.
           </p>
 
           <ul className="service-list">
@@ -33,14 +34,14 @@ export default function Services() {
           </ul>
 
           <a href="#contact" className="btn btn--navy">
-            Present your case to the lawyer
+            اعرض قضيتك على المحامي
           </a>
         </div>
 
         <div className="services__visual">
           <Image
             src="/images/justice.jpg"
-            alt="Scales of justice and a judge’s gavel on a lawyer’s desk"
+            alt="ميزان العدالة ومطرقة القاضي على مكتب محامٍ"
             width={1024}
             height={768}
             sizes="(max-width: 960px) 100vw, 45vw"
@@ -48,8 +49,8 @@ export default function Services() {
             className="services__img"
           />
           <p className="services__caption">
-            Every case starts with the right documents. We review yours and map the most suitable
-            legal path to recover what you are owed.
+            كل قضية تبدأ بالوثائق الصحيحة. نراجع مستنداتك ونحدد المسار القانوني الأنسب لاسترداد
+            ما لك من حقوق.
           </p>
         </div>
       </div>

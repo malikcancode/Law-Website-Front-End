@@ -10,12 +10,12 @@ export default function FinalCta() {
     <section className="final-cta" aria-labelledby="final-title">
       <div className="container final-cta__inner">
         <h2 id="final-title">
-          Do not leave your rights without a <span>legal claim.</span>
+          لا تترك حقك بلا <span>مطالبة قانونية.</span>
         </h2>
-        <p>Recover what is yours through the proper legal channels.</p>
+        <p>استرد ما لك عبر القنوات القانونية الصحيحة.</p>
         <div className="final-cta__actions">
           <a href="#contact" className="btn btn--navy btn--lg">
-            Book your consultation now
+            احجز استشارتك الآن
           </a>
           <a href={site.telHref} className="btn btn--outline-navy btn--lg">
             <Phone size={20} strokeWidth={2} aria-hidden="true" />

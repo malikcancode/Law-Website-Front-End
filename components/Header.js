@@ -4,10 +4,10 @@ import { Phone, Scale } from 'lucide-react';
 import { useSite } from './SiteProvider';
 
 const links = [
-  { href: '#services', label: 'Services' },
-  { href: '#process', label: 'How we work' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#services', label: 'الخدمات' },
+  { href: '#process', label: 'آلية العمل' },
+  { href: '#faq', label: 'الأسئلة الشائعة' },
+  { href: '#contact', label: 'تواصل معنا' },
 ];
 
 export default function Header() {
@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <header className="header">
       <a className="skip-link" href="#main">
-        Skip to content
+        تخطّي إلى المحتوى
       </a>
       <div className="container header__inner">
         <a href="#top" className="brand" aria-label={site.firmName}>
@@ -30,11 +30,11 @@ export default function Header() {
           </span>
           <span className="brand__text">
             <strong>{site.shortName}</strong>
-            <small>Law Firm & Legal Consultations</small>
+            <small>مكتب محاماة واستشارات قانونية</small>
           </span>
         </a>
 
-        <nav className="nav" aria-label="Main">
+        <nav className="nav" aria-label="القائمة الرئيسية">
           {links.map((l) => (
             <a key={l.href} href={l.href}>
               {l.label}
